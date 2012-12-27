@@ -18,7 +18,7 @@ setup(
     author_email='thadeusb@thadeusb.com',
     description='Safely evaluate expressions without eval or exec',
     long_description=__doc__,
-    packages=[
+    py_modules=[
         'safecalc',
     ],
     zip_safe=False,
