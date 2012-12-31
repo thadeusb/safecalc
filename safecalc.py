@@ -184,6 +184,8 @@ class TopDownParser(object):
 
 class CtxCalculator(TopDownParser):
     def __init__(self, ctx=None):
+        if ctx is None:
+            ctx = {}
         self.ctx = ctx
 
         super(CtxCalculator, self).__init__(
