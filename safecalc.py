@@ -264,6 +264,10 @@ class CtxCalculator(TopDownParser):
     def parse(self, program, **ctx_extras):
         self.ctx_extras = ctx_extras
         return super(CtxCalculator, self).parse(program)
+        
+    def eval(self, program, **ctx_extras):
+        parser = self.parse(program, **ctx_extras)
+        return parser.eval(parser)
 
 
 if __name__ == '__main__':
@@ -271,7 +275,7 @@ if __name__ == '__main__':
 
     def test(expr, ctx={}):
         x = parser.parse(expr, **ctx)
-        ans = x.eval()
+        ans = x.eval(x)
         print expr, x, '=', ans
         return ans
 
@@ -281,6 +285,7 @@ if __name__ == '__main__':
     test('1+2/2')
     test('-1')
     test('value+1')
+    test('value')
 
     ctx = {'value': 2.0}
     test('value+1', ctx)
